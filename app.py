@@ -74,7 +74,6 @@ def create_app():
     def add_retirada():
         if 'user_id' not in session:
             return redirect(url_for('login'))  # Redireciona para a página de login se não estiver logado
-
         cod_origem = request.form['cod_origem']
         desc_origem = request.form['desc_origem']
         quant_origem = request.form['quant_origem']

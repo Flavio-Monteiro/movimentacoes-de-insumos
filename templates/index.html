@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Retirada de Produtos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Retirada de Produtos</h1>
+        <form action="{{ url_for('add_retirada') }}" method="post">
+            <label for="cod_origem">Cód. Origem:</label>
+            <input type="text" id="cod_origem" name="cod_origem" required>
+
+            <label for="desc_origem">Descrição do Produto Origem:</label>
+            <input type="text" id="desc_origem" name="desc_origem" required>
+
+            <label for="quant_origem">Quantidade:</label>
+            <input type="number" id="quant_origem" name="quant_origem" required>
+
+            <label for="cod_destino">Cód. Destino:</label>
+            <input type="text" id="cod_destino" name="cod_destino" required>
+
+            <label for="prod_destino">Produto Destino:</label>
+            <input type="text" id="prod_destino" name="prod_destino" required>
+
+            <label for="quant_destino">Quantidade:</label>
+            <input type="number" id="quant_destino" name="quant_destino" required>
+
+            <button type="submit">Adicionar Retirada</button>
+        </form>
+        <div class="actions">
+            <a href="{{ url_for('minhas_retiradas') }}">Minhas Retiradas</a>
+            <a href="{{ url_for('gerar_pdf') }}">Gerar PDF</a>
+            <a href="{{ url_for('gerar_excel') }}">Gerar Excel</a>
+            <a href="{{ url_for('logout') }}">Sair</a>
+        </div>
+        {% with mensagens = get_flashed_messages() %}
+            {% if mensagens %}
+                <div class="message">
+                    {% for mensagem in mensagens %}
+                        {{ mensagem }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

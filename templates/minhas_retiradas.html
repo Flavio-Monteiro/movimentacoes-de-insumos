@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Retiradas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Minhas Retiradas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cód. Origem</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Cód. Destino</th>
+                    <th>Produto Destino</th>
+                    <th>Quantidade</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for retirada in retiradas %}
+                <tr>
+                    <td>{{ retirada['cod_origem'] }}</td>
+                    <td>{{ retirada['desc_origem'] }}</td>
+                    <td>{{ retirada['quant_origem'] }}</td>
+                    <td>{{ retirada['cod_destino'] }}</td>
+                    <td>{{ retirada['prod_destino'] }}</td>
+                    <td>{{ retirada['quant_destino'] }}</td>
+                    <td>{{ retirada['data'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="actions">
+            <a href="{{ url_for('index') }}">Voltar</a>
+            <a href="{{ url_for('gerar_pdf') }}">Gerar PDF</a>
+            <a href="{{ url_for('gerar_excel') }}">Gerar Excel</a>
+        </div>
+        {% with mensagens = get_flashed_messages() %}
+            {% if mensagens %}
+                <div class="message">
+                    {% for mensagem in mensagens %}
+                        {{ mensagem }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

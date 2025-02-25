@@ -9,7 +9,7 @@ import io
 # Função para criar a aplicação Flask
 def create_app():
     app = Flask(__name__)
-    app.secret_key = 'sua_chave_secreta_aqui'
+    app.secret_key = 'c5efa0fa97d514e542270bedbb3f82d4'
 
     # Função para conectar ao banco de dados
     def get_db_connection():
